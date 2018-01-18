@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/colorPrimaryDark"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/t1f2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:text="NA"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/t2f2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="5dp"
+        android:text="NA"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/datef2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Date"
+        android:textColor="@android:color/background_light"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/llc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/datef2"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/Score1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S1"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:text="-"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/Score2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S2"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llc"
+        android:layout_centerHorizontal="true"
+        android:text="Tag"
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp" />
+
+
+</RelativeLayout>

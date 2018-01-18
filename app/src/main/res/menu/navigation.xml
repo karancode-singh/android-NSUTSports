@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home Team" />
+
+    <item
+        android:id="@+id/navigation_all"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="All Teams" />
+
+    <item
+        android:id="@+id/navigation_changeHome"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Switch Sides" />
+
+</menu>

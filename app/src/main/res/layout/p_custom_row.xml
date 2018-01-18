@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@color/colorPrimaryDark">
+
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NA"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        android:layout_marginStart="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NA"
+        android:textColor="@android:color/background_light"
+        android:textSize="30sp"
+        android:layout_marginEnd="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColor="@android:color/background_light"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:text="Time"
+        android:textColor="@android:color/background_light"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/pTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:text="Tag"
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

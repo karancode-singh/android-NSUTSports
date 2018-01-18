@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">NSIT Sports</string>
+    <string name="title_activity_firebase">FirebaseActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <!--<string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>-->
+
+    <string-array name="yearTypes">
+        <item>1st Year</item>
+        <item>2nd Year</item>
+        <item>3rd Year</item>
+        <item>4th Year</item>
+    </string-array>
+    <string-array name="branchTypes">
+        <item>COE</item>
+        <item>IT</item>
+        <item>ECE</item>
+        <item>ICE</item>
+        <item>ME</item>
+        <item>MPA</item>
+        <item>BT</item>
+    </string-array>
+    <string-array name="sectionTypes">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+</resources>
