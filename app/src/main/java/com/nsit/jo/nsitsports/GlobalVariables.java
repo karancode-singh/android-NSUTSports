@@ -14,7 +14,7 @@ public class GlobalVariables {
             "Badminton",
             "Kho Kho",
             "Chess",
-            "Carom",
+            "Carrom",
             "Powerlifting",
             "Armwrestling",
             "Lawn Tennis",
