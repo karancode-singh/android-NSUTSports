@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class ScoreBoard extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
 
-    private final String DB = "WS2018";
+    private final String DB = GlobalVariables.DB;
     private ArrayList<Entry> entriesPending;
     private ArrayList<Entry> entriesCompleted;
     private ArrayList<String> keysPending;

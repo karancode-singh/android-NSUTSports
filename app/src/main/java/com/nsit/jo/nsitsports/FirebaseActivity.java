@@ -65,13 +65,8 @@ public class FirebaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase);
 
         mFrame = (FrameLayout) findViewById(R.id.frame);
-        sportsArrayList.add("Football");
-        sportsArrayList.add("Kabaddi");
-        sportsArrayList.add("Cricket");
-        sportsArrayList.add("Basketball");
-        sportsArrayList.add("Badminton");
-        sportsArrayList.add("TableTennis");
-        sportsArrayList.add("Chess");
+        for(String sport : GlobalVariables.SPORTS_LIST)
+            sportsArrayList.add(sport);
         list = new ListView(this);
         arrayAdapter = new ArrayAdapter<String>(
                 this,
