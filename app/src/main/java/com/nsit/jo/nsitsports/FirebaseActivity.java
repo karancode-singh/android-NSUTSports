@@ -4,11 +4,16 @@ package com.nsit.jo.nsitsports;
  * Created by jo on 18/01/18.
  */
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseActivity extends AppCompatActivity {
+public class FirebaseActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener{
 
     private FrameLayout mFrame;
     private ListView list;
@@ -42,6 +47,27 @@ public class FirebaseActivity extends AppCompatActivity {
     static protected String selectedYear;
     static protected String selectedSport;
     static protected boolean home = true;
+    static boolean calledAlready = false;
+    private ProgressDialog dialog;
+    Snackbar snackbar;
+    private NetworkStateReceiver networkStateReceiver;
+
+    @Override
+    public void onNetworkAvailable() {
+        if (snackbar.isShown()) {
+            snackbar.dismiss();
+            Log.d("snackbar", "Hiding");
+        }
+    }
+
+    @Override
+    public void onNetworkUnavailable() {
+        if (!snackbar.isShown()) {
+            snackbar.show();
+            Log.d("snackbar", "Showing");
+        }
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,13 +95,27 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase);
 
-        sportsArrayList = new ArrayList<>();
+        snackbar = Snackbar.make(findViewById(R.id.container), "Unable to connect to the Internet", Snackbar.LENGTH_INDEFINITE);
+        networkStateReceiver = new NetworkStateReceiver(this);
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+
+
+        if (!calledAlready) {
+            try {
+                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            }
+            catch (Exception e){
+            }
+            calledAlready = true;
+        }
 
         db = FirebaseDatabase.getInstance().getReference()
                 .child(GlobalVariables.sportListDB);
+//        db.keepSynced(true);
 
         mFrame = (FrameLayout) findViewById(R.id.frame);
-
+        sportsArrayList = new ArrayList<>();
         list = new ListView(this);
         arrayAdapter = new ArrayAdapter<String>(
                 this,
@@ -83,9 +123,26 @@ public class FirebaseActivity extends AppCompatActivity {
                 sportsArrayList);
         list.setAdapter(arrayAdapter);
 
+
+
+        dialog = new ProgressDialog(FirebaseActivity.this);
+        dialog.setMessage("Loading list of sports...");
+        dialog.show();
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dialog.hide();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 if(dataSnapshot.exists()){
                     sportsArrayList.clear();
                     for(DataSnapshot ds:dataSnapshot.getChildren()) {
@@ -166,9 +223,16 @@ public class FirebaseActivity extends AppCompatActivity {
         list.setOnItemClickListener(itemClickListener);
     }
 
+
     public void change() {
         Toast.makeText(this, "Ditching your Home Team? Sure?", Toast.LENGTH_LONG).show();
         startActivity(new Intent(FirebaseActivity.this, LogInActivity.class));
         finish();
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        networkStateReceiver.removeListener(this);
+        this.unregisterReceiver(networkStateReceiver);
     }
 }

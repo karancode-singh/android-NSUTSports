@@ -100,15 +100,15 @@ public class ScoreBoard extends AppCompatActivity implements NetworkStateReceive
 
         if (FirebaseActivity.home) {
             mDatabase = FirebaseDatabase.getInstance().getReference().child(DB).child(MainActivity.YEAR).child(FirebaseActivity.selectedSport);
-            home();
+            fromHome();
         } else {
             mDatabase = FirebaseDatabase.getInstance().getReference().child(DB).child(FirebaseActivity.selectedYear).child(FirebaseActivity.selectedSport);
-            generic();
+            fromAll();
         }
     }
 
 
-    void home() {
+    void fromHome() {
         final String branchSection = MainActivity.BRANCH + "-" + MainActivity.SECTION;
 
         entriesPending = new ArrayList<>();
@@ -262,7 +262,7 @@ public class ScoreBoard extends AppCompatActivity implements NetworkStateReceive
     }
 
 
-    void generic() {
+    void fromAll() {
         entriesPending = new ArrayList<>();
         entriesCompleted = new ArrayList<>();
 
