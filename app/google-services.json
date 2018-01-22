@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44147031246:android:af512585f776869c",
+        "android_client_info": {
+          "package_name": "com.nsit.jo.nsitsportsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44147031246-sk9susp0p8pm0ce9s42ep2gbvpfsbk1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nsit.jo.nsitsportsadmin",
+            "certificate_hash": "d31f6411ed57d0ec2459699bd49352545f8cbd70"
+          }
+        },
+        {
+          "client_id": "44147031246-o5a948d8je3tgr2deo6nljuprd7p76bi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPS55Awi-7VH8Qhj16QHIWhFsVFCW5tIY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44147031246-o5a948d8je3tgr2deo6nljuprd7p76bi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

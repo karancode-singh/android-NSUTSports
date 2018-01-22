@@ -86,7 +86,12 @@ public class ScoreBoard extends AppCompatActivity implements NetworkStateReceive
 //        progressBar.setVisibility(View.VISIBLE);
 
         if (!calledAlready) {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            try {
+                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            }
+            catch (Exception e){
+
+            }
             calledAlready = true;
         }
         FirebaseDatabase database = FirebaseDatabase.getInstance();

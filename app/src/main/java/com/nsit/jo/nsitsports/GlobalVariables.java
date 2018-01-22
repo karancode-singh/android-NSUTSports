@@ -5,21 +5,9 @@ package com.nsit.jo.nsitsports;
  */
 
 public class GlobalVariables {
-    final static String[] SPORTS_LIST = {
-            "Football",
-            "Cricket",
-            "Basketball",
-            "Volleyball",
-            "Kabaddi",
-            "Badminton",
-            "Kho Kho",
-            "Chess",
-            "Carrom",
-            "Powerlifting",
-            "Armwrestling",
-            "Lawn Tennis",
-            "Table Tennis"};
 
     final static String DB = "WS2018";
+    final static String sportListDB = "sportlist";
+
 
 }

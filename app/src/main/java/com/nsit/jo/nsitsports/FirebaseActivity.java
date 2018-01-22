@@ -21,19 +21,24 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseActivity extends AppCompatActivity {
 
-
     private FrameLayout mFrame;
     private ListView list;
-    private ArrayList<String> sportsArrayList = new ArrayList<>();
+    private ArrayList<String> sportsArrayList;
     private ArrayAdapter<String> arrayAdapter;
     private AdapterView.OnItemClickListener itemClickListener;
     private Spinner spinnerYear;
-
+    private DatabaseReference db;
     static protected String selectedYear;
     static protected String selectedSport;
     static protected boolean home = true;
@@ -64,15 +69,37 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase);
 
+        sportsArrayList = new ArrayList<>();
+
+        db = FirebaseDatabase.getInstance().getReference()
+                .child(GlobalVariables.sportListDB);
+
         mFrame = (FrameLayout) findViewById(R.id.frame);
-        for(String sport : GlobalVariables.SPORTS_LIST)
-            sportsArrayList.add(sport);
+
         list = new ListView(this);
         arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
                 sportsArrayList);
         list.setAdapter(arrayAdapter);
+
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    sportsArrayList.clear();
+                    for(DataSnapshot ds:dataSnapshot.getChildren()) {
+                        sportsArrayList.add(ds.getValue().toString());
+                    }
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         spinnerYear = new Spinner(this);
         List<String> spinnerArray = new ArrayList<String>();
