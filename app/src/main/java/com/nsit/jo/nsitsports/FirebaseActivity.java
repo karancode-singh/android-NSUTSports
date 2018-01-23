@@ -7,6 +7,8 @@ package com.nsit.jo.nsitsports;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,6 +16,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +48,7 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
     private ArrayAdapter<String> arrayAdapter;
     private AdapterView.OnItemClickListener itemClickListener;
     private Spinner spinnerYear;
+    private TextView textView;
     private DatabaseReference db;
     static protected String selectedYear;
     static protected String selectedSport;
@@ -51,6 +57,7 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
     private ProgressDialog dialog;
     Snackbar snackbar;
     private NetworkStateReceiver networkStateReceiver;
+    private LinearLayout ll;
 
     @Override
     public void onNetworkAvailable() {
@@ -158,6 +165,7 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
             }
         });
 
+        textView = new TextView(this);
         spinnerYear = new Spinner(this);
         List<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("1st Year");
@@ -179,6 +187,8 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
             }
         };
 
+        ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.VERTICAL);
         home();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -190,19 +200,38 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
         home = true;
         mFrame.removeAllViews();
 
+        ll.removeAllViews();
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 35, 0, 0);
+        ll.setLayoutParams(params);
+        mFrame.addView(ll);
+
+        params.setMargins(20, 0, 0, 0);
+        textView.setTextSize(22);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setTextColor(Color.parseColor("#4e3a6b"));
+        textView.setText(MainActivity.YEAR + ", " + MainActivity.BRANCH + "-" + MainActivity.SECTION);
+        textView.setLayoutParams(params);
+        ((LinearLayout) ll).addView(textView);
+
+        params.setMargins(0, 40, 0, 0);
+        list.setLayoutParams(params);
         if (list.getParent() != null)
             ((ViewGroup) list.getParent()).removeView(list);
-        mFrame.addView(list);
+        ll.addView(list);
 
         list.setOnItemClickListener(itemClickListener);
+
     }
 
     private void all() {
         home = false;
         mFrame.removeAllViews();
 
-        LinearLayout ll = new LinearLayout(this);
-        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.removeAllViews();
+
+
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 50, 0, 0);
         ll.setLayoutParams(params);
