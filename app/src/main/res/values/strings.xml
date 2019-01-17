@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NSIT Sports</string>
+    <string name="app_name">NSUT Sports</string>
     <string name="title_activity_firebase">FirebaseActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
