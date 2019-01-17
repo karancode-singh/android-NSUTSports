@@ -134,6 +134,7 @@ public class FirebaseActivity extends AppCompatActivity implements NetworkStateR
 
         dialog = new ProgressDialog(FirebaseActivity.this);
         dialog.setMessage("Loading list of sports...");
+        dialog.setCancelable(false);
         dialog.show();
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
